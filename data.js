@@ -15,7 +15,9 @@ const ASSETS = {
   nhd: "assets/event-national-heroes-day.webp",
   tot: "assets/event-this-or-that.webp",
   spot: "assets/event-spot-the-difference.webp",
-  match: "assets/event-match-it.webp"
+  match: "assets/event-match-it.webp",
+  banner_vip_pc: "assets/banner-vip-pc.webp",
+  banner_guild_pc: "assets/banner-guild-pc.webp"
 };
 
 /* =====================================================================
@@ -33,7 +35,7 @@ const ASSETS = {
      lede        one-sentence headline for the program
      badges      [{ text, kind: "ok" | "info" | "dim" | "amber" }]
      sourceLine  optional line naming the source deck
-     stats       KPI cards: [{ label, value, note, tone: "up" | "down" }]
+     stats       KPI cards: [{ label, value, unit, small, note, tone: "up" | "down" }]
      blocks      ordered content blocks, each with a "type":
        notes       { lead, bullets }                 amber-bar callout
        panel       { title, paragraphs, bullets }    single panel
@@ -42,7 +44,7 @@ const ASSETS = {
        activities  { title, groups: [{ name, intro, note, items }] }
                    item: { name, dates, status, category, description, image (ASSETS key), objective, results: [{label, value}], highlights }
        charts      { title, items: [chart] }        chart: { title, type: "bar" | "line", unit, labels, series: [{ name, values, color }], note }
-       table       { title, columns, rows, note }   rows are arrays of cells; a cell may be { text, sub, cls }
+       table       { title, columns, rows, note }   columns are strings or { text, num }; rows are arrays of cells; a cell may be { text, sub, cls }
        issues      { title, items }                  item: { title, impact, severity, status, owner, resolution }
        actions     { title, items }                  item: { action, owner, due, status }
 
@@ -54,6 +56,11 @@ const ASSETS = {
      July/August roster by tier, E-Card receivers and feedback) and the
      "[SEA-TS] August E-Card (SPECIAL BENEFIT)" tab of "ITEM CODE (BD) 2025 - MSEA
      [UPDATED 2026]" (activity dates, conditions, per-country counts).
+   - Cabal PC Top Spender/VIP: "Montly Report - Top Spenders AUGUST.xlsx", sheet
+     "VIP Report Aug '26" (Staz VIP Report — August 2026), and the "TS & GL Slides" deck.
+   - Cabal PC Guild Leader: "Montly Report - Guild Leader AUGUST.xlsx" (KPI Summary,
+     Guild Roster & Bonus, Guild Battle Arena and Maquinas Speed Run logs) and the
+     "TS & GL Slides" deck. The two Cabal PC banners are cropped from the deck's artwork.
    Figures are taken as they appear in those sources; nothing has been
    added or estimated. Anything unclear is listed under Data notes.
    ===================================================================== */
@@ -66,7 +73,7 @@ const REPORT = {
     periodShort: "1 – 31 Aug 2026",
     market: "Philippines",
     products: "CABAL Infinite Combo & Ultimate Combo",
-    headline: "Three of eight program reports are in, all for Cabal Mobile: the community grew 3.33% to 21,507 members, the Top Spender roster reached 151 with 71 receiving the National Heroes Day E-Card, and 86.2% of Guild Leaders joined the Guild Ranking Challenge.",
+    headline: "Five of eight program reports are in. Cabal Mobile: the community grew 3.33% to 21,507, the Top Spender roster reached 151 and 86.2% of Guild Leaders joined the Guild Ranking Challenge. Cabal PC: VIP top-up rose 48.3% to 44,302 and 13 of 14 registered guilds joined at least one of the August guild events.",
     status: "Draft",
     compiled: "7 September 2026"
   },
@@ -82,19 +89,23 @@ const REPORT = {
   overview: {
     kicker: "Headline",
     title: "The Month So Far",
-    lede: "Community and Guild Leader both show reward-based activity moving the numbers: the Facebook community grew 3.33% to 21,507 members with comments up 472% on event posts, and the Guild Ranking Challenge lifted Mission War participation by 22.8% in Bracket 199 and 36.2% in the OVL bracket. The Top Spender roster grew from 148 to 151, with 71 High and Mid Tier accounts receiving the National Heroes Day E-Card. Streamer for Cabal Mobile and all four Cabal PC programs have not reported.",
+    lede: "Five of eight programs have reported. On Cabal Mobile, Community and Guild Leader both show reward-based activity moving the numbers: the Facebook community grew 3.33% to 21,507 members with comments up 472% on event posts, and the Guild Ranking Challenge lifted Mission War participation by 22.8% in Bracket 199 and 36.2% in the OVL bracket; the Top Spender roster grew from 148 to 151, with 71 High and Mid Tier accounts receiving the National Heroes Day E-Card. On Cabal PC, VIP top-up rose 48.3% to 44,302 across 83 active players, and 13 of the 14 registered PH guilds joined at least one of the two August guild events. Streamer has not reported for either product, and Cabal PC Community is pending.",
     stats: [
-      { label: "Programs reported", value: "3", small: "of 8", note: "Cabal Mobile Community, Top Spender/VIP and Guild Leader. Five programs pending." },
-      { label: "Community members", value: 21507, note: "+693 in August, a 3.33% increase from the start of the month; 565 new members." },
-      { label: "Top Spenders", value: 151, note: "Up from 148 in July; 47 active. 71 High and Mid Tier accounts received the August E-Card." },
-      { label: "Guild Leader participation", value: "86.2%", note: "50 of 58 Guild Leaders joined the Guild Ranking Challenge; Mission War participation up 22.8% in Bracket 199 and 36.2% in the OVL bracket." }
+      { label: "Programs reported", value: "5", small: "of 8", note: "Cabal Mobile: Community, Top Spender/VIP, Guild Leader. Cabal PC: Top Spender/VIP, Guild Leader. Three pending." },
+      { label: "Mobile community members", value: 21507, note: "+693 in August, a 3.33% increase from the start of the month; 565 new members." },
+      { label: "Mobile Top Spenders", value: 151, note: "Up from 148 in July; 47 active. 71 High and Mid Tier accounts received the August E-Card." },
+      { label: "Mobile Guild Leader participation", value: "86.2%", note: "50 of 58 Guild Leaders joined the Guild Ranking Challenge; Mission War participation up 22.8% in Bracket 199 and 36.2% in the OVL bracket." },
+      { label: "PC VIP top-up", value: 44302, tone: "up", note: "+48.3% vs July across 83 active players (-1.2%). The sheet states no currency." },
+      { label: "PC VIP tier promotions", value: 6, note: "15 players onboarded and 1 account transferred in August." },
+      { label: "PC guild participation", value: "92.9%", note: "13 of 14 registered guilds joined at least one August event; 9 joined both." },
+      { label: "PC Guild Leader bonus", value: "10%", note: "Top-up bonus applied to all 14 Guild Leaders on the roster." }
     ],
     notes: {
-      lead: "Three programs have reported.",
+      lead: "Five programs have reported.",
       bullets: [
         "Cabal Mobile Community, Top Spender/VIP and Guild Leader have August results",
-        "Cabal Mobile Streamer is pending",
-        "All four Cabal PC programs are pending"
+        "Cabal PC Top Spender/VIP and Guild Leader have August results",
+        "Pending: Cabal Mobile Streamer, Cabal PC Community and Cabal PC Streamer"
       ]
     }
   },
@@ -399,8 +410,185 @@ const REPORT = {
       palette: ["var(--pcg)", "var(--pcg-dk)", "var(--pcg-lt)", "var(--amber)"],
       programs: [
         { id: "community", title: "Community", status: "pending", note: "The August Community report for Cabal PC has not been received yet." },
-        { id: "vip", title: "Top Spender/VIP", status: "pending", note: "The August Top Spender/VIP report for Cabal PC has not been received yet." },
-        { id: "guild", title: "Guild Leader", status: "pending", note: "The August Guild Leader report for Cabal PC has not been received yet." },
+        {
+          id: "vip", title: "Top Spender/VIP", status: "reported",
+          short: "Top-up 44,302, +48.3%; 83 active VIP players",
+          banner: "banner_vip_pc", bannerCaption: "TS & GL Slides · August 2026 VIP Performance & Philippines Guild Events KPI Summary",
+          lede: "VIP top-up rose 48.3% from July to 44,302 across 83 active players, with the Prestige and Topspender tiers driving 81.3% of the total. 15 players were onboarded and 6 moved up a tier.",
+          badges: [
+            { text: "Reported", kind: "ok" }, { text: "44,302 top-up", kind: "info" }, { text: "+48.3% vs July", kind: "info" },
+            { text: "83 active players", kind: "info" }, { text: "6 tier promotions", kind: "info" }, { text: "Active players -1.2%", kind: "amber" }
+          ],
+          sourceLine: "Sources: the Cabal PC Top Spenders August workbook (sheet VIP Report Aug '26, titled Staz VIP Report — August 2026) and the TS & GL Slides deck.",
+          stats: [
+            { label: "Total top-up", value: 44302, tone: "up", note: "+48.3% vs July 2026. The sheet states no currency." },
+            { label: "Active players", value: 83, note: "-1.2% vs July 2026." },
+            { label: "New players onboarded", value: 15, note: "As stated in the workbook summary; its onboarding list has 14 entries (see Data notes)." },
+            { label: "Tier promotions", value: 6, note: "Players who moved up a tier." },
+            { label: "Accounts transferred", value: 1, note: "Ownership handoffs this month." },
+            { label: "All-time VIP spend", value: 1187242, note: "Across the whole active roster. The sheet states no currency." },
+            { label: "Prestige + Topspender share", value: "81.3%", note: "Of total top-up: Prestige 48.5%, Topspender 32.8%." },
+            { label: "Black tier top-up", value: 4920, note: "One player; 11.1% of total, +23.0% month on month." }
+          ],
+          blocks: [
+            { type: "notes", lead: "Top-up rose sharply while the active roster held steady.",
+              bullets: [
+                "Total top-up rose 48.3% to 44,302 while active players slipped 1.2% to 83",
+                "Prestige (18 players, 21,474) and Topspender (39 players, 14,524) drive 81.3% of total top-up",
+                "The single Black tier player accounts for 11.1% of top-up (4,920), up 23.0% month on month",
+                "Every tier grew its top-up month on month: Black +23.0%, Prestige +51.4%, Topspender +52.4%, Exclusive +56.1%",
+                "15 new players onboarded, 6 tier promotions and 1 account transfer"
+              ] },
+            { type: "grid", title: "Tier breakdown, August 2026", cols: 2, items: [
+              { title: "Top-up by tier",
+                paragraphs: ["Prestige generates the most top-up with 18 players; Topspender is the largest tier by headcount."],
+                stats: [{ label: "Black", value: "11.1%" }, { label: "Prestige", value: "48.5%" }, { label: "Topspender", value: "32.8%" }, { label: "Exclusive", value: "7.6%" }],
+                chart: { title: "Top-up by tier", type: "bar", labels: ["Black", "Prestige", "Topspender", "Exclusive"], series: [{ name: "Top-up", values: [4920, 21474, 14524, 3384] }] },
+                note: "Shares are the sheet's % of total top-up." },
+              { title: "Active players by tier",
+                paragraphs: ["39 of the 83 active players sit in Topspender, 25 in Exclusive, 18 in Prestige and 1 in Black."],
+                chart: { title: "Active players by tier", type: "bar", labels: ["Black", "Prestige", "Topspender", "Exclusive"], series: [{ name: "Active players", values: [1, 18, 39, 25] }] } }
+            ] },
+            { type: "table", title: "Tier breakdown as reported",
+              columns: ["Tier", { text: "Active players", num: true }, { text: "Top-up", num: true }, { text: "% of total", num: true }, { text: "MoM change", num: true }],
+              rows: [
+                ["Black", { text: "1", cls: "num" }, { text: "4,920", cls: "num" }, { text: "11.1%", cls: "num" }, { text: "+23.0%", cls: "num up" }],
+                ["Prestige", { text: "18", cls: "num" }, { text: "21,474", cls: "num" }, { text: "48.5%", cls: "num" }, { text: "+51.4%", cls: "num up" }],
+                ["Topspender", { text: "39", cls: "num" }, { text: "14,524", cls: "num" }, { text: "32.8%", cls: "num" }, { text: "+52.4%", cls: "num up" }],
+                ["Exclusive", { text: "25", cls: "num" }, { text: "3,384", cls: "num" }, { text: "7.6%", cls: "num" }, { text: "+56.1%", cls: "num up" }],
+                ["Total", { text: "83", cls: "num" }, { text: "44,302", cls: "num" }, { text: "100%", cls: "num" }, { text: "+48.3%", cls: "num up" }]
+              ],
+              note: "Month-on-month change as stated in the sheet. The total row uses the sheet's summary figures; 100% is the sum of the four stated shares." },
+            { type: "table", title: "Top 10 spenders, August 2026",
+              columns: [{ text: "#", num: true }, "Tier", { text: "Top-up", num: true }],
+              rows: [
+                [{ text: "1", cls: "num" }, "Prestige", { text: "13,618", cls: "num" }],
+                [{ text: "2", cls: "num" }, "Black", { text: "4,920", cls: "num" }],
+                [{ text: "3", cls: "num" }, "Prestige", { text: "2,250", cls: "num" }],
+                [{ text: "4", cls: "num" }, "Topspender", { text: "1,614", cls: "num" }],
+                [{ text: "5", cls: "num" }, "Topspender", { text: "1,610", cls: "num" }],
+                [{ text: "6", cls: "num" }, "Topspender", { text: "1,346", cls: "num" }],
+                [{ text: "7", cls: "num" }, "Prestige", { text: "1,304", cls: "num" }],
+                [{ text: "8", cls: "num" }, "Exclusive", { text: "1,156", cls: "num" }],
+                [{ text: "9", cls: "num" }, "Topspender", { text: "1,110", cls: "num" }],
+                [{ text: "10", cls: "num" }, "Topspender", { text: "1,044", cls: "num" }]
+              ],
+              note: "Names and usernames are in the sheet and are not reproduced here." },
+            { type: "grid", title: "Player movements", cols: 3, items: [
+              { title: "New players onboarded",
+                paragraphs: ["15 per the summary; the onboarding list has 14 entries."],
+                bullets: ["13 new to the sheet and 1 who took over an existing account", "By current tier: 8 Exclusive, 5 Topspender, 1 Prestige"] },
+              { title: "Tier promotions",
+                paragraphs: ["6 players moved up a tier in August."],
+                bullets: ["1 promotion from Topspender to Prestige, on a 13,618 top-up (23,566 cumulative)", "5 promotions from Exclusive to Topspender, on top-ups of 1,610, 1,110, 576, 386 and 98 (6,516 to 7,262 cumulative)"] },
+              { title: "Account transfers",
+                paragraphs: ["1 ownership handoff in August, on a Topspender-tier account."] }
+            ] },
+            { type: "actions", title: "Next steps from the deck", items: [
+              { action: "Monitor tier promotions to sustain VIP growth momentum", owner: "", due: "", status: "Planned" },
+              { action: "Improve payment system reliability and expand top-up options", owner: "", due: "", status: "Planned" }
+            ] }
+          ]
+        },
+        {
+          id: "guild", title: "Guild Leader", status: "reported",
+          short: "13 of 14 guilds active (92.9%); 10% bonus to all 14 Guild Leaders",
+          banner: "banner_guild_pc", bannerCaption: "TS & GL Slides · August 2026 VIP Performance & Philippines Guild Events KPI Summary",
+          lede: "13 of the 14 registered PH guilds (92.9%) joined at least one of August's two guild events: 9 entered the Guild Battle Arena and 13 the Maquinas Outpost Speed Run, where Aria Assassins set the fastest registered clear at 315 seconds. All 14 Guild Leaders received the 10% top-up bonus.",
+          badges: [
+            { text: "Reported", kind: "ok" }, { text: "14 registered guilds", kind: "info" }, { text: "92.9% active in at least one event", kind: "info" },
+            { text: "12 Arena / 16 Speed Run submissions", kind: "info" }, { text: "10% bonus to 14 Guild Leaders", kind: "info" }, { text: "1 guild inactive", kind: "amber" }
+          ],
+          sourceLine: "Sources: the Cabal PC Guild Leader August workbook (KPI Summary, Guild Roster & Bonus, Guild Battle Arena and Maquinas Speed Run submission logs) and the TS & GL Slides deck.",
+          stats: [
+            { label: "Registered PH guilds", value: 14, note: "Total guilds on the official roster." },
+            { label: "Active in at least one event", value: 13, tone: "up", note: "92.9% of registered guilds; 9 were active in both events." },
+            { label: "Guild Battle Arena participation", value: "64.3%", note: "9 of 14 registered guilds; 12 submissions, 3 of them from non-roster guilds." },
+            { label: "Maquinas Speed Run participation", value: "92.9%", tone: "up", note: "13 of 14 registered guilds; 16 submissions, 3 of them from non-roster guilds." },
+            { label: "Fastest registered clear", value: 315, unit: "sec", note: "Maquinas Outpost Speed Run, by Aria Assassins. Lower is better." },
+            { label: "Speed Run views", value: "2,600+", note: "Average views, per the workbook highlight." },
+            { label: "Guild Leaders receiving bonus", value: 14, note: "10% top-up bonus applied per Guild Leader." },
+            { label: "Guilds with zero participation", value: 1, note: "MASTERS entered neither event." }
+          ],
+          blocks: [
+            { type: "notes", lead: "Near-full roster engagement, with one guild absent.",
+              bullets: [
+                "13 of 14 registered guilds submitted to at least one event and 9 to both; MASTERS was the only guild with zero participation",
+                "The Maquinas Outpost Speed Run drew 16 submissions, 13 of them from registered guilds (92.9% of the roster); the Guild Battle Arena drew 12 submissions, 9 from registered guilds (64.3% of the roster)",
+                "The remaining 3 submissions in each event came from guilds outside the PH roster, such as regional rivals",
+                "Guild Leaders gave positive feedback on the Guild Mission Festival: rewards were valued and the event ran without reported bugs",
+                "Guild Leaders reported occasional issues with Guild Top-Up transactions and asked for multi-card credit card payments, or the 10% bonus applied directly to members' accounts"
+              ] },
+            { type: "activities", title: "Activities and events", groups: [
+              { name: "Guild events",
+                intro: "Two guild events ran in the second half of August; entries for both were submitted as Facebook posts. Participation counts registered PH guilds with at least one submission.",
+                items: [
+                  { name: "Guild Battle Arena", dates: "15–31 August 2026", category: "PH vs Indonesia guild PvP (3v3)",
+                    description: "Guild PvP matches against Indonesian guilds, with results submitted via Facebook post.",
+                    highlights: [
+                      "9 of the 14 registered guilds entered; 5 did not: Synesthesia, Nikostratos, ABYSSHUNTERS, LaughingCoffin and MASTERS",
+                      "3 further submissions came from guilds outside the PH roster",
+                      "Submissions were logged from 16 to 31 August"
+                    ],
+                    results: [{ label: "Submissions", value: 12 }, { label: "Registered guilds", value: 9 }, { label: "Participation rate", value: "64.3%" }, { label: "Non-roster submissions", value: 3 }, { label: "Registered guilds not entering", value: 5 }] },
+                  { name: "Maquinas Outpost Speed Run", dates: "21–26 August 2026", category: "Guild dungeon clear",
+                    description: "Guild dungeon clear submitted via Facebook post; the top 5 fastest and 3 random guilds were rewarded.",
+                    highlights: [
+                      "Fastest registered clear: Aria Assassins at 315 seconds; 5 of the 16 submissions carry a recorded time",
+                      "An average of 2,600+ views, per the workbook highlight",
+                      "Only MASTERS did not enter; submissions were logged from 16 to 31 August, beyond the 21–26 August window"
+                    ],
+                    results: [{ label: "Submissions", value: 16 }, { label: "Registered guilds", value: 13 }, { label: "Participation rate", value: "92.9%" }, { label: "Non-roster submissions", value: 3 }, { label: "Fastest registered clear", value: "315 sec" }] }
+                ] }
+            ] },
+            { type: "charts", title: "Speed Run clear times", items: [
+              { title: "Maquinas Outpost Speed Run, recorded clear times", type: "bar", unit: "sec",
+                labels: ["Aria Assassins", "STARLIGHT", "PAPISQUAD", "SPECTRAL"],
+                series: [{ name: "Clear time", values: [315, 334, 409, 409] }],
+                note: "Lower is better. Registered guilds with a recorded time; a fifth timed submission, 214 seconds, came from Together, a guild outside the PH roster." }
+            ] },
+            { type: "table", title: "Roster participation",
+              columns: ["Guild", "Guild Battle Arena", "Maquinas Speed Run", "Both events"],
+              rows: [
+                ["PAPISQUAD", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["Synesthesia", { text: "No", cls: "flat" }, { text: "Yes", cls: "up" }, { text: "No", cls: "flat" }],
+                ["SPECTRAL", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["Nikostratos", { text: "No", cls: "flat" }, { text: "Yes", cls: "up" }, { text: "No", cls: "flat" }],
+                ["MugiwaraPirates", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["STARLIGHT", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["ABYSSHUNTERS", { text: "No", cls: "flat" }, { text: "Yes", cls: "up" }, { text: "No", cls: "flat" }],
+                ["LaughingCoffin", { text: "No", cls: "flat" }, { text: "Yes", cls: "up" }, { text: "No", cls: "flat" }],
+                ["IDOLS", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["Wanderers", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["MASTERS", { text: "No", cls: "down" }, { text: "No", cls: "down" }, { text: "No", cls: "down" }],
+                ["Aria Assassins", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["ascension", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }],
+                ["SUPREME", { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }, { text: "Yes", cls: "up" }]
+              ],
+              note: "All 14 Guild Leaders on the roster received the 10% top-up bonus." },
+            { type: "grid", title: "Incentive, highlight and lowlight", cols: 3, items: [
+              { title: "Guild Leader Incentive Program",
+                paragraphs: ["All 14 Guild Leaders on the roster received the 10% top-up bonus for August."] },
+              { title: "Highlight",
+                bullets: [
+                  "Guild Leaders expressed positive feedback on the Guild Mission Festival: they found the rewards valuable and rewarding, and the event ran smoothly without any reported bugs",
+                  "The Maquinas Outpost Speed Run accumulated an average of 2,600+ views, indicating good player engagement and interest in the event" ] },
+              { title: "Lowlight",
+                bullets: [
+                  "Guild Leaders reported occasional issues with Guild Top-Up transactions and stressed the need to resolve these recurring issues for smoother, more reliable transactions",
+                  "Guild Leaders are requesting improvements to credit card payment options, particularly allowing multiple cards for top-ups; alternatively, members of guilds with a Top-Up Bonus could receive the 10% bonus directly on their accounts" ] }
+            ] },
+            { type: "issues", title: "Issues and risks", items: [
+              { title: "Guild Top-Up transaction issues", impact: "Guild Leaders report occasional, recurring problems with Guild Top-Up transactions; multi-card support and direct bonus delivery are their top requests.", severity: "", status: "Open", owner: "", resolution: "Deck next step: improve payment system reliability and expand top-up options." },
+              { title: "Non-participating guilds", impact: "MASTERS entered neither event, and 5 registered guilds skipped the Guild Battle Arena.", severity: "", status: "Open", owner: "", resolution: "Deck next step: re-engage inactive guilds, especially MASTERS and the Guild Battle Arena non-participants, with targeted campaigns and incentives." }
+            ] },
+            { type: "actions", title: "Next steps from the deck", items: [
+              { action: "Improve payment system reliability and expand top-up options", owner: "", due: "", status: "Planned" },
+              { action: "Re-engage inactive guilds, especially MASTERS and non-participating Guild Battle Arena guilds, with targeted campaigns and incentives", owner: "", due: "", status: "Planned" },
+              { action: "Continue supporting and promoting Guild Leader incentives to maintain high engagement", owner: "", due: "", status: "Ongoing" }
+            ] }
+          ]
+        },
         { id: "streamer", title: "Streamer", status: "pending", note: "The August Streamer report for Cabal PC has not been received yet." }
       ]
     }
@@ -409,7 +597,7 @@ const REPORT = {
   next: {
     kicker: "Outlook",
     title: "What's Next",
-    lede: "September has no major holiday to naturally boost group engagement, so the community team will run a more interactive activity; the Top Spender program's next Special Benefit E-Card is scheduled for 2–30 September; and the Guild Leader team carries five recommendations out of the challenge. Five program reports are still to come.",
+    lede: "September has no major holiday to naturally boost group engagement, so the community team will run a more interactive activity; the Cabal Mobile Top Spender program's next Special Benefit E-Card is scheduled for 2–30 September; the Cabal Mobile Guild Leader team carries five recommendations out of the Guild Ranking Challenge; and the Cabal PC deck sets next steps around payment reliability, inactive guilds, Guild Leader incentives and tier promotions. Three program reports are still to come.",
     panels: [
       { title: "Cabal Mobile · Community", bullets: [
         "TikTok dance challenge featuring players' characters, with Force Gems as rewards",
@@ -426,11 +614,18 @@ const REPORT = {
         "Assess OVL bracket capacity and whether an additional Mission War channel is justified",
         "Clarify and evaluate the permanent Transmuter / Battle Style proposal with the game team",
         "Repeat the before/during participation tracking for the next Guild Activity",
-        "Follow up with the 8 non-participating Guild Leaders at an appropriate time" ] }
+        "Follow up with the 8 non-participating Guild Leaders at an appropriate time" ] },
+      { title: "Cabal PC · Top Spender/VIP", bullets: [
+        "Monitor tier promotions to sustain VIP growth momentum",
+        "Improve payment system reliability and expand top-up options" ] },
+      { title: "Cabal PC · Guild Leader", bullets: [
+        "Re-engage inactive guilds, especially MASTERS and the Guild Battle Arena non-participants, with targeted campaigns and incentives",
+        "Continue supporting and promoting Guild Leader incentives to maintain high engagement",
+        "Guild Leaders' requests on record: resolve the recurring Guild Top-Up transaction issues, allow multiple credit cards for top-ups, or apply the 10% bonus directly to members' accounts" ] }
     ],
     notes: {
       lead: "Still to report for August.",
-      bullets: ["Cabal Mobile: Streamer", "Cabal PC: Community, Top Spender/VIP, Guild Leader and Streamer"]
+      bullets: ["Cabal Mobile: Streamer", "Cabal PC: Community and Streamer"]
     }
   },
 
@@ -439,6 +634,9 @@ const REPORT = {
     { title: "Top Spender report sheet", desc: "[TS] Monthly Report - August, Google Sheet, one tab", url: "https://docs.google.com/spreadsheets/d/1ReLzocI18oeQalLxrw9ObBk72Zma8KH7LBPaSgmnvj8/edit?gid=0#gid=0" },
     { title: "August E-Card activity tab", desc: "[SEA-TS] August E-Card (SPECIAL BENEFIT) tab in ITEM CODE (BD) 2025 - MSEA [UPDATED 2026]", url: "https://docs.google.com/spreadsheets/d/1bPrNx6K9UmOLQzGRS3FkVnbSjQ2jlbeo8rOrF6pbjJE/edit?gid=61151223#gid=61151223" },
     { title: "E-Card banner post", desc: "Banner posting link from the [TS] Monthly Report - August sheet (Facebook)", url: "https://www.facebook.com/photo/?fbid=122129178302936258&set=g.532583169239776" },
+    { title: "PC Top Spenders workbook", desc: "File name as received: Montly Report - Top Spenders AUGUST.xlsx. Sheet VIP Report Aug '26 (Staz VIP Report — August 2026)", url: "" },
+    { title: "PC Guild Leader workbook", desc: "File name as received: Montly Report - Guild Leader AUGUST.xlsx. KPI Summary, Guild Roster & Bonus, Guild Battle Arena and Maquinas Speed Run logs", url: "" },
+    { title: "TS & GL Slides deck", desc: "TS & GL Slides.pptx, 6 slides: August 2026 VIP Performance & Philippines Guild Events KPI Summary", url: "" },
     { title: "Guild Ranking Challenge deck", desc: "August 2026 Insights, 6 pages, prepared by AE PH: Ian", url: "https://www.canva.com/d/owhTiDEInG9aRZ4" },
     { title: "Guild Program update", desc: "Partnered count, 10% Guild Leaders and removals, shared as text", url: "" }
   ],
@@ -446,16 +644,22 @@ const REPORT = {
   dataNotes: {
     lead: "Data notes.",
     bullets: [
-      "Community: the gender split uses the deck's legend (men 92.2%); the pie label reads 92.9%",
-      "Community: 565 new members and 693 net growth are both as stated in the deck",
-      "Community: Philippine region shares are read from the deck's chart; the age chart and the moderator approvals chart carry no value labels, so those are described in words",
-      "Community: the Community Talks video post carries the same five figures as Spot the Difference (47 / 110 / 67 / 1,100 / 226)",
-      "Top Spender: Active (47) and Inactive (143) are as stated in the sheet and do not add up to the Total (151); July has the same gap (45, 143, 148)",
-      "Top Spender: the report sheet counts 71 E-Card receivers (8 High Tier, 63 Mid Tier); the E-Card activity tab's PH row shows 62 Mid Tier, 14 High Tier, 76 in total. The report sheet's figures are used",
-      "Top Spender: the E-Card activity tab still lists delivery and code generation as in progress, while the report sheet carries receiver feedback; the activity list dates it 7–31 August and the activity details 9–31 August",
-      "Guild Leader: the challenge counts 58 Guild Leaders; the program update counts 52 partnered. Both are shown as stated, and \"10% Guild Leaders\" is kept as labelled",
-      "Guild Leader: 8 non-participants (6 work, 2 hospitalized) and 7 removals (5 work, 2 hospitalized) are separate facts from separate sources",
-      "Guild Leader: the deck says Bracket 199 pre-event totals ranged from 100 to 113; its own chart puts 3 August at 119 and 5 August at 97"
+      "Cabal Mobile Community: the gender split uses the deck's legend (men 92.2%); the pie label reads 92.9%",
+      "Cabal Mobile Community: 565 new members and 693 net growth are both as stated in the deck",
+      "Cabal Mobile Community: Philippine region shares are read from the deck's chart; the age chart and the moderator approvals chart carry no value labels, so those are described in words",
+      "Cabal Mobile Community: the Community Talks video post carries the same five figures as Spot the Difference (47 / 110 / 67 / 1,100 / 226)",
+      "Cabal Mobile Top Spender: Active (47) and Inactive (143) are as stated in the sheet and do not add up to the Total (151); July has the same gap (45, 143, 148)",
+      "Cabal Mobile Top Spender: the report sheet counts 71 E-Card receivers (8 High Tier, 63 Mid Tier); the E-Card activity tab's PH row shows 62 Mid Tier, 14 High Tier, 76 in total. The report sheet's figures are used",
+      "Cabal Mobile Top Spender: the E-Card activity tab still lists delivery and code generation as in progress, while the report sheet carries receiver feedback; the activity list dates it 7–31 August and the activity details 9–31 August",
+      "Cabal Mobile Guild Leader: the challenge counts 58 Guild Leaders; the program update counts 52 partnered. Both are shown as stated, and \"10% Guild Leaders\" is kept as labelled",
+      "Cabal Mobile Guild Leader: 8 non-participants (6 work, 2 hospitalized) and 7 removals (5 work, 2 hospitalized) are separate facts from separate sources",
+      "Cabal Mobile Guild Leader: the deck says Bracket 199 pre-event totals ranged from 100 to 113; its own chart puts 3 August at 119 and 5 August at 97",
+      "Cabal PC Top Spender: the summary states 15 new players onboarded; the onboarding list has 14 entries, one of them the account taken over in the month's single transfer",
+      "Cabal PC Top Spender: top-up amounts are shown as in the sheet, which does not state a currency; player names and usernames in the sheet are not reproduced",
+      "Cabal PC Guild Leader: the Maquinas Outpost Speed Run window is 21–26 August but its log holds submissions from 16 to 31 August; the Guild Battle Arena log runs 16–31 August inside its 15–31 August window",
+      "Cabal PC Guild Leader: only 5 of the 16 Speed Run submissions carry a completion time; 315 seconds is the fastest among registered guilds, and a non-roster guild logged 214 seconds",
+      "Cabal PC Guild Leader: the workbook highlight refers to a Guild Mission Festival that is not otherwise described in the workbook or the deck",
+      "Cabal PC Guild Leader: the workbook spells the fastest guild both AriaAssassins (roster and Guild Battle Arena log) and Aria Assassins (KPI Summary and Maquinas log); Aria Assassins is used here"
     ]
   }
 };

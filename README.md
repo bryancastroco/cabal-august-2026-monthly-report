@@ -19,12 +19,12 @@ The UI follows the two existing report sites:
 | Cabal Mobile | Top Spender/VIP | Reported — roster by tier, July vs August, and the Special Benefit E-Card |
 | Cabal Mobile | Guild Leader | Reported — Guild Ranking Challenge + program update |
 | Cabal Mobile | Streamer | Pending — no report received |
-| Cabal PC | Community | Pending |
-| Cabal PC | Top Spender/VIP | Pending |
-| Cabal PC | Guild Leader | Pending |
-| Cabal PC | Streamer | Pending |
+| Cabal PC | Community | Pending — no report received |
+| Cabal PC | Top Spender/VIP | Reported — VIP top-up, tier breakdown, player movements from the August workbook |
+| Cabal PC | Guild Leader | Reported — two guild events, roster participation and the 10% bonus from the August workbook |
+| Cabal PC | Streamer | Pending — no report received |
 
-Report status is **Draft**. Five of eight programs are still to come.
+Report status is **Draft**. Three of eight programs are still to come.
 
 ## Run it
 
@@ -85,7 +85,7 @@ REPORT
 | `grid` | panels in a 1/2/3-column grid; items take `paragraphs`, `bullets`, `stats`, `chart` |
 | `activities` | grouped activity cards; 3+ items in a group render as photo cards, fewer render wide (with `objective`, `highlights`, `results` and an optional `image` beside the text) |
 | `charts` | one or two chart panels |
-| `table` | generic table — `{ columns, rows }` |
+| `table` | generic table — `{ columns, rows, note }`; a column may be `{ text, num }`, a cell `{ text, sub, cls }` |
 | `issues` | issues and risks table |
 | `actions` | action items table |
 
@@ -111,8 +111,8 @@ renderers do not change.
 3. Reference it by key: `banner: "event_foo"` on a program, `image: "event_foo"` on an
    activity item.
 
-Current images were cropped out of the Canva slide exports at 1280×720 and re-encoded
-as WebP (~300px wide for event creatives, 760px for banners). Every image opens in a
+The Cabal Mobile images were cropped out of the Canva slide exports at 1280×720 and the
+two Cabal PC banners from the TS & GL Slides.pptx artwork; all are re-encoded as WebP (~300px wide for event creatives, 760px for banners). Every image opens in a
 lightbox on click.
 
 ## Features
@@ -128,30 +128,39 @@ lightbox on click.
 **Verification** — these are the deck ambiguities, also listed at the bottom of the page
 under Data notes:
 
-- Community: legend says men 92.2%, pie label reads 92.9%. Using 92.2%.
-- Community: 565 new members vs 693 net growth — both as stated in the deck.
-- Community: PH region shares read off the chart image; the age chart and the moderator
+- Cabal Mobile Community: legend says men 92.2%, pie label reads 92.9%. Using 92.2%.
+- Cabal Mobile Community: 565 new members vs 693 net growth — both as stated in the deck.
+- Cabal Mobile Community: PH region shares read off the chart image; the age chart and the moderator
   approvals/declines chart have no value labels, so they're described in words only.
   Send the numbers and they can become charts.
-- Community: the Community Talks video post carries the same five figures as Spot the
+- Cabal Mobile Community: the Community Talks video post carries the same five figures as Spot the
   Difference (47 / 110 / 67 / 1,100 / 226) — looks like a copy-over in the deck.
-- Guild Leader: the challenge counts 58 Guild Leaders, the program update counts 52
+- Cabal Mobile Guild Leader: the challenge counts 58 Guild Leaders, the program update counts 52
   partnered. Both shown as stated. "10% Guild Leaders" kept as labelled.
-- Guild Leader: 8 non-participants (6 work, 2 hospitalized) and 7 removals (5 work,
+- Cabal Mobile Guild Leader: 8 non-participants (6 work, 2 hospitalized) and 7 removals (5 work,
   2 hospitalized) are separate facts from separate sources.
-- Guild Leader: deck text says Bracket 199 pre-event totals ranged 100–113, but its own
+- Cabal Mobile Guild Leader: deck text says Bracket 199 pre-event totals ranged 100–113, but its own
   chart puts Aug 3 at 119 and Aug 5 at 97.
-- Top Spender: Active (47) and Inactive (143) do not add up to the Total (151); July has
+- Cabal Mobile Top Spender: Active (47) and Inactive (143) do not add up to the Total (151); July has
   the same gap (45, 143, 148). Shown as stated.
-- Top Spender: the report sheet says 71 E-Card receivers (8 High, 63 Mid); the E-Card
+- Cabal Mobile Top Spender: the report sheet says 71 E-Card receivers (8 High, 63 Mid); the E-Card
   activity tab's PH row says 62 Mid, 14 High, 76 total. The report sheet is used.
-- Top Spender: the E-Card tab still shows delivery and code generation "In progress";
+- Cabal Mobile Top Spender: the E-Card tab still shows delivery and code generation "In progress";
   the report sheet has receiver feedback, so it is treated as delivered. The activity
   list dates it 7–31 August, the activity details 9–31 August.
+- Cabal PC Top Spender: the summary says 15 new players onboarded; the onboarding list has 14
+  entries, one of them the account taken over in the month's single transfer.
+- Cabal PC Top Spender: the sheet states no currency for top-up amounts. Player names and
+  usernames in the sheet are not reproduced on the site.
+- Cabal PC Guild Leader: the Maquinas Speed Run window is 21–26 August but its log holds
+  submissions from 16 to 31 August. Only 5 of 16 submissions carry a completion time; a
+  non-roster guild logged 214 s against the fastest registered 315 s.
+- Cabal PC Guild Leader: the highlight mentions a Guild Mission Festival that is not
+  described anywhere else in the workbook or deck.
 
 **Content to add**
 
-- Five pending program reports
+- Three pending program reports
 - Top Posts and Community Talks currently have no images — the source screenshots are
   Facebook posts that turn illegible at card width
 - Community's `sourceLine` carries no preparer credit; Guild Leader's credits AE PH: Ian and
@@ -167,3 +176,9 @@ under Data notes:
   the Special Benefit E-Card (requirements, receivers, feedback, banner link)
 - `ITEM CODE (BD) 2025 - MSEA [UPDATED 2026]` — tab `[SEA-TS] August E-Card (SPECIAL
   BENEFIT)`: activity dates, conditions, per-country receiver counts; owner AE PH Jay
+- `Montly Report - Top Spenders AUGUST.xlsx` — sheet `VIP Report Aug '26` (Staz VIP Report —
+  August 2026): summary metrics, tier breakdown, top 10, onboarding, transfers, promotions
+- `Montly Report - Guild Leader AUGUST.xlsx` — KPI Summary, Guild Roster & Bonus, Guild Battle
+  Arena and Maquinas Speed Run submission logs
+- `TS & GL Slides.pptx` — 6 slides, August 2026 VIP Performance & Philippines Guild Events KPI
+  Summary; the two Cabal PC banners are cropped from its artwork
