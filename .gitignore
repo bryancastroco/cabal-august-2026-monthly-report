@@ -3,3 +3,4 @@ verify.png
 shot.py
 __pycache__/
 .DS_Store
+.claude/

@@ -16,7 +16,7 @@ The UI follows the two existing report sites:
 | Product | Program | State |
 | --- | --- | --- |
 | Cabal Mobile | Community | Reported — full data from the August deck |
-| Cabal Mobile | Top Spender/VIP | Pending — no report received |
+| Cabal Mobile | Top Spender/VIP | Reported — roster by tier, July vs August, and the Special Benefit E-Card |
 | Cabal Mobile | Guild Leader | Reported — Guild Ranking Challenge + program update |
 | Cabal Mobile | Streamer | Pending — no report received |
 | Cabal PC | Community | Pending |
@@ -24,7 +24,7 @@ The UI follows the two existing report sites:
 | Cabal PC | Guild Leader | Pending |
 | Cabal PC | Streamer | Pending |
 
-Report status is **Draft**. Six of eight programs are still to come.
+Report status is **Draft**. Five of eight programs are still to come.
 
 ## Run it
 
@@ -83,7 +83,7 @@ REPORT
 | `notes` | amber-bar callout — `{ lead, bullets }` |
 | `panel` | one panel — `{ title, paragraphs, bullets }` |
 | `grid` | panels in a 1/2/3-column grid; items take `paragraphs`, `bullets`, `stats`, `chart` |
-| `activities` | grouped activity cards; 3+ items in a group render as photo cards, fewer render wide |
+| `activities` | grouped activity cards; 3+ items in a group render as photo cards, fewer render wide (with `objective`, `highlights`, `results` and an optional `image` beside the text) |
 | `charts` | one or two chart panels |
 | `table` | generic table — `{ columns, rows }` |
 | `issues` | issues and risks table |
@@ -141,13 +141,21 @@ under Data notes:
   2 hospitalized) are separate facts from separate sources.
 - Guild Leader: deck text says Bracket 199 pre-event totals ranged 100–113, but its own
   chart puts Aug 3 at 119 and Aug 5 at 97.
+- Top Spender: Active (47) and Inactive (143) do not add up to the Total (151); July has
+  the same gap (45, 143, 148). Shown as stated.
+- Top Spender: the report sheet says 71 E-Card receivers (8 High, 63 Mid); the E-Card
+  activity tab's PH row says 62 Mid, 14 High, 76 total. The report sheet is used.
+- Top Spender: the E-Card tab still shows delivery and code generation "In progress";
+  the report sheet has receiver feedback, so it is treated as delivered. The activity
+  list dates it 7–31 August, the activity details 9–31 August.
 
 **Content to add**
 
-- Six pending program reports
+- Five pending program reports
 - Top Posts and Community Talks currently have no images — the source screenshots are
   Facebook posts that turn illegible at card width
-- `preparedBy` on the Community program is empty; Guild Leader credits AE PH: Ian
+- Community's `sourceLine` carries no preparer credit; Guild Leader's credits AE PH: Ian and
+  the Top Spender activity note credits AE PH Jay
 - Higher-resolution event creatives if the decks get re-exported at 2560px wide
 
 ## Sources
@@ -155,3 +163,7 @@ under Data notes:
 - `[AUG 2026] Community Report` — Canva, 15 pages
 - `Guild Ranking Challenge: August 2026 Insights` — Canva, 6 pages, prepared by AE PH: Ian
 - Guild Program update (partnered count, 10% Guild Leaders, removals) — shared as text
+- `[TS] Monthly Report - August` — Google Sheet, one tab: July/August roster by tier and
+  the Special Benefit E-Card (requirements, receivers, feedback, banner link)
+- `ITEM CODE (BD) 2025 - MSEA [UPDATED 2026]` — tab `[SEA-TS] August E-Card (SPECIAL
+  BENEFIT)`: activity dates, conditions, per-country receiver counts; owner AE PH Jay

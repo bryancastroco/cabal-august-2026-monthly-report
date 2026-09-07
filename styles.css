@@ -151,6 +151,8 @@ ul.clean li::before{content:""; position:absolute; left:0; top:.6em; width:6px; 
 .act .act-head .dt{font-size:.8rem; color:var(--muted)}
 .act .act-desc{font-size:.9rem; color:var(--muted); margin:0 0 8px; max-width:74ch}
 .act .g2{margin-top:10px}
+.panel.act:has(.act-shot){display:grid; grid-template-columns:320px minmax(0,1fr); column-gap:24px; align-items:start}
+.panel.act:has(.act-shot) .act-shot{grid-row:1 / span 5; margin:0}
 
 .notes{border-left:3px solid var(--amber); padding:3px 0 3px 16px; margin-top:22px}
 .notes p{font-size:.83rem; color:var(--muted); margin:0 0 7px} .notes p:last-child{margin-bottom:0}
@@ -214,6 +216,8 @@ body.presenting{overflow:hidden}
   .brand img{height:29px}
   .prod .phead .right{margin-left:0; text-align:left; width:100%}
   .navlinks button{display:none}
+  .panel.act:has(.act-shot){display:block}
+  .panel.act:has(.act-shot) .act-shot{margin:0 0 12px}
 }
 @media (max-width:520px){ .g4{grid-template-columns:1fr} .strip{grid-template-columns:1fr} }
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .rise{opacity:1; transform:none; transition:none} }

@@ -28,7 +28,7 @@ const ASSETS = {
 
    Reported program content, in the order it is shown:
      short       one line for the program strip cards
-     banner      key into ASSETS for the wide image above the program
+     banner      optional key into ASSETS for the wide image above the program
      bannerCaption  caption bar printed under the banner
      lede        one-sentence headline for the program
      badges      [{ text, kind: "ok" | "info" | "dim" | "amber" }]
@@ -40,7 +40,7 @@ const ASSETS = {
        grid        { title, intro, cols, items }     panels in a grid;
                    item: { title, subtitle, paragraphs, bullets, stats: [{label, value}], chart, note }
        activities  { title, groups: [{ name, intro, note, items }] }
-                   item: { name, dates, status, category, description, image (ASSETS key), results: [{label, value}], highlights }
+                   item: { name, dates, status, category, description, image (ASSETS key), objective, results: [{label, value}], highlights }
        charts      { title, items: [chart] }        chart: { title, type: "bar" | "line", unit, labels, series: [{ name, values, color }], note }
        table       { title, columns, rows, note }   rows are arrays of cells; a cell may be { text, sub, cls }
        issues      { title, items }                  item: { title, impact, severity, status, owner, resolution }
@@ -50,6 +50,10 @@ const ASSETS = {
    - Cabal Mobile Community: Canva deck "[AUG 2026] Community Report" (15 pages).
    - Cabal Mobile Guild Leader: Canva deck "Guild Ranking Challenge: August 2026
      Insights" (6 pages, prepared by AE PH: Ian) and the Guild Program update text.
+   - Cabal Mobile Top Spender/VIP: Google Sheet "[TS] Monthly Report - August" (one tab:
+     July/August roster by tier, E-Card receivers and feedback) and the
+     "[SEA-TS] August E-Card (SPECIAL BENEFIT)" tab of "ITEM CODE (BD) 2025 - MSEA
+     [UPDATED 2026]" (activity dates, conditions, per-country counts).
    Figures are taken as they appear in those sources; nothing has been
    added or estimated. Anything unclear is listed under Data notes.
    ===================================================================== */
@@ -62,7 +66,7 @@ const REPORT = {
     periodShort: "1 – 31 Aug 2026",
     market: "Philippines",
     products: "CABAL Infinite Combo & Ultimate Combo",
-    headline: "Two of eight program reports are in, both for Cabal Mobile: the community grew 3.33% to 21,507 members and 86.2% of Guild Leaders joined the Guild Ranking Challenge.",
+    headline: "Three of eight program reports are in, all for Cabal Mobile: the community grew 3.33% to 21,507 members, the Top Spender roster reached 151 with 71 receiving the National Heroes Day E-Card, and 86.2% of Guild Leaders joined the Guild Ranking Challenge.",
     status: "Draft",
     compiled: "7 September 2026"
   },
@@ -78,18 +82,18 @@ const REPORT = {
   overview: {
     kicker: "Headline",
     title: "The Month So Far",
-    lede: "Both Cabal Mobile reports point the same way: reward-based activity moves the numbers. The Facebook community grew 3.33% to 21,507 members with comments up 472% on event posts, and the Guild Ranking Challenge lifted Mission War participation by 22.8% in Bracket 199 and 36.2% in the OVL bracket. Top Spender/VIP and Streamer for Cabal Mobile, and all four Cabal PC programs, have not reported.",
+    lede: "Community and Guild Leader both show reward-based activity moving the numbers: the Facebook community grew 3.33% to 21,507 members with comments up 472% on event posts, and the Guild Ranking Challenge lifted Mission War participation by 22.8% in Bracket 199 and 36.2% in the OVL bracket. The Top Spender roster grew from 148 to 151, with 71 High and Mid Tier accounts receiving the National Heroes Day E-Card. Streamer for Cabal Mobile and all four Cabal PC programs have not reported.",
     stats: [
-      { label: "Programs reported", value: "2", small: "of 8", note: "Cabal Mobile Community and Guild Leader. Six programs pending." },
+      { label: "Programs reported", value: "3", small: "of 8", note: "Cabal Mobile Community, Top Spender/VIP and Guild Leader. Five programs pending." },
       { label: "Community members", value: 21507, note: "+693 in August, a 3.33% increase from the start of the month; 565 new members." },
-      { label: "Guild Leader participation", value: "86.2%", note: "50 of 58 Guild Leaders joined the Guild Ranking Challenge; 8 could not." },
-      { label: "Mission War uplift", value: "+22.8% / +36.2%", tone: "up", note: "Bracket 199 and OVL bracket, during the challenge against the 8 days before it." }
+      { label: "Top Spenders", value: 151, note: "Up from 148 in July; 47 active. 71 High and Mid Tier accounts received the August E-Card." },
+      { label: "Guild Leader participation", value: "86.2%", note: "50 of 58 Guild Leaders joined the Guild Ranking Challenge; Mission War participation up 22.8% in Bracket 199 and 36.2% in the OVL bracket." }
     ],
     notes: {
-      lead: "Two programs have reported.",
+      lead: "Three programs have reported.",
       bullets: [
-        "Cabal Mobile Community and Guild Leader have August results",
-        "Cabal Mobile Top Spender/VIP and Streamer are pending",
+        "Cabal Mobile Community, Top Spender/VIP and Guild Leader have August results",
+        "Cabal Mobile Streamer is pending",
         "All four Cabal PC programs are pending"
       ]
     }
@@ -231,7 +235,66 @@ const REPORT = {
           ]
         },
 
-        { id: "vip", title: "Top Spender/VIP", status: "pending", note: "The August Top Spender/VIP report for Cabal Mobile has not been received yet." },
+        {
+          id: "vip", title: "Top Spender/VIP", status: "reported",
+          short: "151 Top Spenders, +3; 71 received the August E-Card",
+          lede: "The Top Spender roster grew from 148 to 151 in August, with every tier adding one account and active accounts up from 45 to 47. The month's Special Benefit E-Card for National Heroes Day went to 71 High and Mid Tier Top Spenders.",
+          badges: [
+            { text: "Reported", kind: "ok" }, { text: "151 Top Spenders", kind: "info" }, { text: "+3 vs July", kind: "info" },
+            { text: "47 active", kind: "info" }, { text: "71 E-Card receivers", kind: "info" }, { text: "9 account transfers", kind: "amber" }
+          ],
+          sourceLine: "Sources: [TS] Monthly Report - August sheet, and the [SEA-TS] August E-Card (SPECIAL BENEFIT) tab of the ITEM CODE (BD) 2025 - MSEA [UPDATED 2026] sheet.",
+          stats: [
+            { label: "Total Top Spenders", value: 151, note: "148 in July, up by 3." },
+            { label: "Active", value: 47, tone: "up", note: "45 in July." },
+            { label: "Inactive", value: 143, note: "Unchanged from July." },
+            { label: "New onboarded", value: 2, note: "Same as July." },
+            { label: "Account transfers", value: 9, note: "1 in July." },
+            { label: "Leviathan", value: 9, note: "8 in July." },
+            { label: "Moby Dick", value: 40, note: "39 in July." },
+            { label: "Big Daddy", value: 102, note: "101 in July." }
+          ],
+          blocks: [
+            { type: "notes", lead: "Steady growth across all three tiers.",
+              bullets: [
+                "Every tier added one account in August: Leviathan 8 to 9, Moby Dick 39 to 40, Big Daddy 101 to 102",
+                "Active accounts rose from 45 to 47 while inactive accounts stayed at 143",
+                "Account transfers rose from 1 in July to 9 in August; new onboarded accounts held at 2",
+                "The August Special Benefit E-Card went to 71 High and Mid Tier Top Spenders: 8 High Tier and 63 Mid Tier"
+              ] },
+            { type: "grid", title: "Roster, July vs August", cols: 2, items: [
+              { title: "Top Spenders by tier",
+                paragraphs: ["All three tiers grew by one account. Big Daddy remains by far the largest tier, at 102 of the 151 accounts."],
+                chart: { title: "Top Spenders by tier", type: "bar", labels: ["Leviathan", "Moby Dick", "Big Daddy"],
+                  series: [{ name: "July", color: "var(--mob-dk)", values: [8, 39, 101] }, { name: "August", color: "var(--mob)", values: [9, 40, 102] }] } },
+              { title: "Roster movement",
+                paragraphs: ["The total rose by 3 and active accounts by 2, while inactive stayed at 143. Account transfers went from 1 to 9, the largest change of the month, and new onboarded accounts held at 2."],
+                chart: { title: "Roster movement", type: "bar", labels: ["Total", "Active", "Inactive"],
+                  series: [{ name: "July", color: "var(--mob-dk)", values: [148, 45, 143] }, { name: "August", color: "var(--mob)", values: [151, 47, 143] }] },
+                note: "Active and inactive are shown as stated in the sheet; they do not add up to the total (see Data notes)." }
+            ] },
+            { type: "activities", title: "Activities and events", groups: [
+              { name: "Special Benefit",
+                intro: "The E-Card is one of the benefits offered to Top Spenders: an item code sent to High and Mid Tier accounts on their country's national holiday, which for the Philippines is National Heroes Day on 31 August.",
+                note: "Activity owner per the activity list: AE PH Jay. The banner posting is linked from the report sheet.",
+                items: [
+                  { name: "August E-Card, National Heroes Day", dates: "9–31 August 2026", category: "Special Benefit (E-Card)", image: "nhd",
+                    description: "Unique codes were activated on 9 August and can be redeemed on the member site until 15 September. The activity is logged as a retention benefit for Top Spenders.",
+                    objective: "Retention: reward High and Mid Tier Top Spenders with an item code on National Heroes Day.",
+                    highlights: [
+                      "Requirement: account lifetime value of $15,000 and higher",
+                      "One code per ID, redeemable once, on one character, at sea-member.combocabalm.com/rewards",
+                      "Receivers said the Mid Tier reward was better than the High Tier one, because Mid Tier received an Agent Yul accessory",
+                      "High Tier Top Spenders added that not all High Tier accounts are maxed out in upgrades, which caused some frustration with the rewards sent to High Tier"
+                    ],
+                    results: [{ label: "Receivers", value: 71 }, { label: "High Tier", value: 8 }, { label: "Mid Tier", value: 63 }] }
+                ] }
+            ] },
+            { type: "issues", title: "Issues and risks", items: [
+              { title: "High Tier E-Card reward seen as weaker than Mid Tier", impact: "Mid Tier received an Agent Yul accessory and High Tier Top Spenders felt their reward was worse; because not all High Tier accounts are maxed out in upgrades, the High Tier reward caused some frustration.", severity: "", status: "Open", owner: "", resolution: "None recorded in the sheets. The next Special Benefit E-Card is listed for 2–30 September." }
+            ] }
+          ]
+        },
 
         {
           id: "guild", title: "Guild Leader", status: "reported",
@@ -346,7 +409,7 @@ const REPORT = {
   next: {
     kicker: "Outlook",
     title: "What's Next",
-    lede: "September has no major holiday to naturally boost group engagement, so the community team will run a more interactive activity; the Guild Leader team carries five recommendations out of the challenge. Six program reports are still to come.",
+    lede: "September has no major holiday to naturally boost group engagement, so the community team will run a more interactive activity; the Top Spender program's next Special Benefit E-Card is scheduled for 2–30 September; and the Guild Leader team carries five recommendations out of the challenge. Five program reports are still to come.",
     panels: [
       { title: "Cabal Mobile · Community", bullets: [
         "TikTok dance challenge featuring players' characters, with Force Gems as rewards",
@@ -355,6 +418,9 @@ const REPORT = {
         "Weekly moderator reports for review",
         "New MOU for Community Moderators and Community Leaders",
         "Continued monitoring of competing releases, particularly Cabal Red Thailand" ] },
+      { title: "Cabal Mobile · Top Spender/VIP", bullets: [
+        "September E-Card (Special Benefit) scheduled for 2–30 September per the activity list",
+        "August E-Card feedback on record: the High Tier reward was seen as weaker than Mid Tier, and not all High Tier accounts are maxed out in upgrades. No response is recorded in the sheets" ] },
       { title: "Cabal Mobile · Guild Leader", bullets: [
         "Review increasing activity codes from 20 to 30 per participant",
         "Assess OVL bracket capacity and whether an additional Mission War channel is justified",
@@ -364,12 +430,15 @@ const REPORT = {
     ],
     notes: {
       lead: "Still to report for August.",
-      bullets: ["Cabal Mobile: Top Spender/VIP and Streamer", "Cabal PC: Community, Top Spender/VIP, Guild Leader and Streamer"]
+      bullets: ["Cabal Mobile: Streamer", "Cabal PC: Community, Top Spender/VIP, Guild Leader and Streamer"]
     }
   },
 
   sources: [
     { title: "Community Report deck", desc: "[AUG 2026] Community Report, 15 pages", url: "https://www.canva.com/d/CAxmTnbo9G8-PHo" },
+    { title: "Top Spender report sheet", desc: "[TS] Monthly Report - August, Google Sheet, one tab", url: "https://docs.google.com/spreadsheets/d/1ReLzocI18oeQalLxrw9ObBk72Zma8KH7LBPaSgmnvj8/edit?gid=0#gid=0" },
+    { title: "August E-Card activity tab", desc: "[SEA-TS] August E-Card (SPECIAL BENEFIT) tab in ITEM CODE (BD) 2025 - MSEA [UPDATED 2026]", url: "https://docs.google.com/spreadsheets/d/1bPrNx6K9UmOLQzGRS3FkVnbSjQ2jlbeo8rOrF6pbjJE/edit?gid=61151223#gid=61151223" },
+    { title: "E-Card banner post", desc: "Banner posting link from the [TS] Monthly Report - August sheet (Facebook)", url: "https://www.facebook.com/photo/?fbid=122129178302936258&set=g.532583169239776" },
     { title: "Guild Ranking Challenge deck", desc: "August 2026 Insights, 6 pages, prepared by AE PH: Ian", url: "https://www.canva.com/d/owhTiDEInG9aRZ4" },
     { title: "Guild Program update", desc: "Partnered count, 10% Guild Leaders and removals, shared as text", url: "" }
   ],
@@ -381,6 +450,9 @@ const REPORT = {
       "Community: 565 new members and 693 net growth are both as stated in the deck",
       "Community: Philippine region shares are read from the deck's chart; the age chart and the moderator approvals chart carry no value labels, so those are described in words",
       "Community: the Community Talks video post carries the same five figures as Spot the Difference (47 / 110 / 67 / 1,100 / 226)",
+      "Top Spender: Active (47) and Inactive (143) are as stated in the sheet and do not add up to the Total (151); July has the same gap (45, 143, 148)",
+      "Top Spender: the report sheet counts 71 E-Card receivers (8 High Tier, 63 Mid Tier); the E-Card activity tab's PH row shows 62 Mid Tier, 14 High Tier, 76 in total. The report sheet's figures are used",
+      "Top Spender: the E-Card activity tab still lists delivery and code generation as in progress, while the report sheet carries receiver feedback; the activity list dates it 7–31 August and the activity details 9–31 August",
       "Guild Leader: the challenge counts 58 Guild Leaders; the program update counts 52 partnered. Both are shown as stated, and \"10% Guild Leaders\" is kept as labelled",
       "Guild Leader: 8 non-participants (6 work, 2 hospitalized) and 7 removals (5 work, 2 hospitalized) are separate facts from separate sources",
       "Guild Leader: the deck says Bracket 199 pre-event totals ranged from 100 to 113; its own chart puts 3 August at 119 and 5 August at 97"
