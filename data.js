@@ -17,7 +17,13 @@ const ASSETS = {
   spot: "assets/event-spot-the-difference.webp",
   match: "assets/event-match-it.webp",
   banner_vip_pc: "assets/banner-vip-pc.webp",
-  banner_guild_pc: "assets/banner-guild-pc.webp"
+  banner_guild_pc: "assets/banner-guild-pc.webp",
+  banner_community_pc: "assets/banner-community-pc.webp",
+  pc_trivia: "assets/event-pc-trivia-challenge.webp",
+  pc_puzzle: "assets/event-pc-word-puzzle.webp",
+  pc_nhd: "assets/event-pc-national-heroes-day.webp",
+  pc_guess: "assets/event-pc-guess-the-location.webp",
+  pc_screenshot: "assets/event-pc-screenshot-activity.webp"
 };
 
 /* =====================================================================
@@ -38,7 +44,7 @@ const ASSETS = {
      stats       KPI cards: [{ label, value, unit, small, note, tone: "up" | "down" }]
      blocks      ordered content blocks, each with a "type":
        notes       { lead, bullets }                 amber-bar callout
-       panel       { title, paragraphs, bullets }    single panel
+       panel       { title, paragraphs, bullets, note }    single panel; note prints small under it
        grid        { title, intro, cols, items }     panels in a grid;
                    item: { title, subtitle, paragraphs, bullets, stats: [{label, value}], chart, note }
        activities  { title, groups: [{ name, intro, note, items }] }
@@ -56,11 +62,14 @@ const ASSETS = {
      July/August roster by tier, E-Card receivers and feedback) and the
      "[SEA-TS] August E-Card (SPECIAL BENEFIT)" tab of "ITEM CODE (BD) 2025 - MSEA
      [UPDATED 2026]" (activity dates, conditions, per-country counts).
+   - Cabal PC Community: Canva deck "[AUG 2026] PC Community Report" (13 pages); its
+     banner and five event creatives are cropped from the deck's page exports.
    - Cabal PC Top Spender/VIP: "Montly Report - Top Spenders AUGUST.xlsx", sheet
      "VIP Report Aug '26" (Staz VIP Report — August 2026), and the "TS & GL Slides" deck.
    - Cabal PC Guild Leader: "Montly Report - Guild Leader AUGUST.xlsx" (KPI Summary,
      Guild Roster & Bonus, Guild Battle Arena and Maquinas Speed Run logs) and the
-     "TS & GL Slides" deck. The two Cabal PC banners are cropped from the deck's artwork.
+     "TS & GL Slides" deck. The Top Spender/VIP and Guild Leader banners are cropped from
+     that deck's artwork.
    Figures are taken as they appear in those sources; nothing has been
    added or estimated. Anything unclear is listed under Data notes.
    ===================================================================== */
@@ -73,7 +82,7 @@ const REPORT = {
     periodShort: "1 – 31 Aug 2026",
     market: "Philippines",
     products: "CABAL Infinite Combo & Ultimate Combo",
-    headline: "Five of eight program reports are in. Cabal Mobile: the community grew 3.33% to 21,507, the Top Spender roster reached 151 and 86.2% of Guild Leaders joined the Guild Ranking Challenge. Cabal PC: VIP top-up rose 48.3% to 44,302 and 13 of 14 registered guilds joined at least one of the August guild events.",
+    headline: "Six of eight program reports are in. Cabal Mobile: the community grew 3.33% to 21,507, the Top Spender roster reached 151 and 86.2% of Guild Leaders joined the Guild Ranking Challenge. Cabal PC: the community grew 1.03% to 9,911, VIP top-up rose 48.3% to 44,302 and 13 of 14 registered guilds joined at least one of the August guild events.",
     status: "Draft",
     compiled: "7 September 2026"
   },
@@ -89,23 +98,23 @@ const REPORT = {
   overview: {
     kicker: "Headline",
     title: "The Month So Far",
-    lede: "Five of eight programs have reported. On Cabal Mobile, Community and Guild Leader both show reward-based activity moving the numbers: the Facebook community grew 3.33% to 21,507 members with comments up 472% on event posts, and the Guild Ranking Challenge lifted Mission War participation by 22.8% in Bracket 199 and 36.2% in the OVL bracket; the Top Spender roster grew from 148 to 151, with 71 High and Mid Tier accounts receiving the National Heroes Day E-Card. On Cabal PC, VIP top-up rose 48.3% to 44,302 across 83 active players, and 13 of the 14 registered PH guilds joined at least one of the two August guild events. Streamer has not reported for either product, and Cabal PC Community is pending.",
+    lede: "Six of eight programs have reported. On Cabal Mobile, Community and Guild Leader both show reward-based activity moving the numbers: the Facebook community grew 3.33% to 21,507 members with comments up 472% on event posts, and the Guild Ranking Challenge lifted Mission War participation by 22.8% in Bracket 199 and 36.2% in the OVL bracket; the Top Spender roster grew from 148 to 151, with 71 High and Mid Tier accounts receiving the National Heroes Day E-Card. On Cabal PC, the Facebook community grew 1.03% to 9,911 with comments up 54% but views down 18.32%; VIP top-up rose 48.3% to 44,302 across 83 active players; and 13 of the 14 registered PH guilds joined at least one of the two August guild events. Only the two Streamer programs have not reported.",
     stats: [
-      { label: "Programs reported", value: "5", small: "of 8", note: "Cabal Mobile: Community, Top Spender/VIP, Guild Leader. Cabal PC: Top Spender/VIP, Guild Leader. Three pending." },
+      { label: "Programs reported", value: "6", small: "of 8", note: "Cabal Mobile: Community, Top Spender/VIP, Guild Leader. Cabal PC: Community, Top Spender/VIP, Guild Leader. Streamer pending on both." },
       { label: "Mobile community members", value: 21507, note: "+693 in August, a 3.33% increase from the start of the month; 565 new members." },
       { label: "Mobile Top Spenders", value: 151, note: "Up from 148 in July; 47 active. 71 High and Mid Tier accounts received the August E-Card." },
       { label: "Mobile Guild Leader participation", value: "86.2%", note: "50 of 58 Guild Leaders joined the Guild Ranking Challenge; Mission War participation up 22.8% in Bracket 199 and 36.2% in the OVL bracket." },
-      { label: "PC VIP top-up", value: 44302, tone: "up", note: "+48.3% vs July across 83 active players (-1.2%). The sheet states no currency." },
-      { label: "PC VIP tier promotions", value: 6, note: "15 players onboarded and 1 account transferred in August." },
+      { label: "PC community members", value: 9911, note: "+104 in August, a 1.03% increase; comments up 54%, views down 18.32%." },
+      { label: "PC VIP top-up", value: 44302, tone: "up", note: "+48.3% vs July across 83 active players (-1.2%); 6 tier promotions. The sheet states no currency." },
       { label: "PC guild participation", value: "92.9%", note: "13 of 14 registered guilds joined at least one August event; 9 joined both." },
       { label: "PC Guild Leader bonus", value: "10%", note: "Top-up bonus applied to all 14 Guild Leaders on the roster." }
     ],
     notes: {
-      lead: "Five programs have reported.",
+      lead: "Six programs have reported.",
       bullets: [
         "Cabal Mobile Community, Top Spender/VIP and Guild Leader have August results",
-        "Cabal PC Top Spender/VIP and Guild Leader have August results",
-        "Pending: Cabal Mobile Streamer, Cabal PC Community and Cabal PC Streamer"
+        "Cabal PC Community, Top Spender/VIP and Guild Leader have August results",
+        "Pending: Streamer for Cabal Mobile and for Cabal PC"
       ]
     }
   },
@@ -409,7 +418,110 @@ const REPORT = {
       id: "pc", name: "Cabal PC", full: "CABAL Ultimate Combo", icon: "cbpc", color: "var(--pcg)",
       palette: ["var(--pcg)", "var(--pcg-dk)", "var(--pcg-lt)", "var(--amber)"],
       programs: [
-        { id: "community", title: "Community", status: "pending", note: "The August Community report for Cabal PC has not been received yet." },
+        {
+          id: "community", title: "Community", status: "reported",
+          short: "9,911 members, +1.03%; comments up 54%, views down 18.32%",
+          banner: "banner_community_pc", bannerCaption: "[AUG 2026] PC Community Report · Cabal Ultimate Combo - Official (SEA)",
+          lede: "Membership grew 1.03% to 9,911 in August with 104 new members. Comments rose 54% to 171, while views fell 18.32% from July to 27,981 and reactions fell to 291 from 400. The Facebook group is Cabal Ultimate Combo - Official (SEA), a public group.",
+          badges: [
+            { text: "Reported", kind: "ok" }, { text: "9,911 members", kind: "info" }, { text: "+1.03% growth", kind: "info" },
+            { text: "350 posts", kind: "info" }, { text: "+54% comments", kind: "info" }, { text: "-18.32% views", kind: "amber" }
+          ],
+          sourceLine: "Source: [AUG 2026] PC Community Report deck, 13 pages.",
+          stats: [
+            { label: "Total members", value: 9911, note: "+104 in August, a 1.03% increase from the beginning of the month." },
+            { label: "New members", value: 104, note: "Members who joined during August; the deck also notes a 10% increase in members joined." },
+            { label: "Total views", value: 27981, tone: "down", note: "An 18.32% decrease from July." },
+            { label: "Posts", value: 350, note: "Consistent content and community activity throughout the month." },
+            { label: "Comments", value: 171, tone: "up", note: "Up 54% from the previous month." },
+            { label: "Reactions", value: 291, tone: "down", note: "400 in July; the deck describes this as almost half." },
+            { label: "Posts removed", value: 5, note: "Posts removed during August, as stated in the deck." },
+            { label: "Members in the Philippines", value: 8847, note: "448 elsewhere in Southeast Asia and 287 in other countries." }
+          ],
+          blocks: [
+            { type: "notes", lead: "Comments up, views and reactions down.",
+              bullets: [
+                "Sunday is the most active day with 173 interactions, likely driven by social media events and the non-work day; Wednesday is second with 169, ahead of the Thursday patch update",
+                "Engagement peaks around 9 AM, 3 PM and 9 PM: before work, at break time and after work",
+                "Reactions fell to 291 from 400 in July; the deck suggests players are not enticed by the activities or the patch updates",
+                "Players are more active in-game than in social media groups, which limits what the team can gather on what players are talking about"
+              ] },
+            { type: "grid", title: "Member profile", cols: 2, items: [
+              { title: "Members by location",
+                paragraphs: ["8,847 of the 9,911 members are in the Philippines, 448 elsewhere in Southeast Asia and 287 in other countries."],
+                stats: [{ label: "Philippines", value: 8847 }, { label: "Southeast Asia", value: 448 }, { label: "Others", value: 287 }],
+                chart: { title: "Members by location", type: "bar", labels: ["Philippines", "Southeast Asia (SEA)", "Others"], series: [{ name: "Members", values: [8847, 448, 287] }] } },
+              { title: "Members by country, outside the Philippines",
+                paragraphs: ["After the Philippines (8,847), Indonesia and Malaysia are the largest member countries."],
+                chart: { title: "Members by country", type: "bar", labels: ["Indonesia", "Malaysia", "UAE", "Vietnam", "USA", "Canada", "Australia", "Thailand", "Japan"], series: [{ name: "Members", values: [210, 115, 78, 74, 56, 54, 52, 49, 47] }] },
+                note: "The Philippines (8,847) is left off this chart for scale." },
+              { title: "Members by Philippine region",
+                paragraphs: ["NCR holds 44.9% of members. The deck's pie puts 28.6% outside the Philippines, which does not match the countries chart (see Data notes)."],
+                chart: { title: "Members by Philippine region", type: "bar", unit: "%", labels: ["NCR", "Region XI", "Region VII", "Region VI", "Region IV-A", "Region III", "Outside PH"], series: [{ name: "Share of members", values: [44.9, 8.3, 7.2, 4.4, 4.4, 4.2, 28.6] }] } },
+              { title: "Members by gender and age",
+                paragraphs: ["Men make up 94% of members and women 6%, with custom gender at 0%. The 25–34 age range is by far the largest group, followed by 35–44 and then 18–24; women are also concentrated in the 25–34 range."],
+                stats: [{ label: "Men", value: "94%" }, { label: "Women", value: "6%" }, { label: "Custom gender", value: "0%" }] }
+            ] },
+            { type: "activities", title: "Activities and events", groups: [
+              { name: "Official group",
+                intro: "Simple, easy-to-join mechanics such as guessing and commenting generate strong participation. The Trivia Challenge Event gained the most comments and reach; players are more interested in challenge-type activities.",
+                note: "Events are facilitated by Moderator Croffles, who assists with event posting, sometimes creates her own banners, and helps talk to players about their prize winnings during an activity.",
+                items: [
+                  { name: "Trivia Challenge Event", category: "Most comments and reach", image: "pc_trivia", description: "Trivia challenge in the official group.",
+                    results: [{ label: "Reactions", value: 17 }, { label: "Comments", value: 35 }, { label: "Shares", value: 5 }, { label: "People reached", value: 2641 }, { label: "Post engagement", value: 57 }] },
+                  { name: "Word Puzzle Event", category: "Event", image: "pc_puzzle", description: "Word puzzle in the official group.",
+                    results: [{ label: "Reactions", value: 9 }, { label: "Comments", value: 33 }, { label: "Shares", value: 1 }, { label: "People reached", value: 794 }, { label: "Post engagement", value: 43 }] },
+                  { name: "National Heroes Day", category: "Most shares", image: "pc_nhd", description: "Salute, Honor, Inspire. The deck gives no post engagement figure for this post.",
+                    results: [{ label: "Reactions", value: 22 }, { label: "Comments", value: 9 }, { label: "Shares", value: 56 }, { label: "People reached", value: 2112 }] }
+                ] },
+              { name: "Partner groups",
+                intro: "Players like to join activities with social media and in-game components. An activity usually runs for 2 days, and players see it as another way to interact with other players.",
+                items: [
+                  { name: "Guess the Location", category: "Partner group", image: "pc_guess",
+                    description: "Players comment their answer and account ID (AID) for a chance to win a code; the first 10 to guess correctly win.",
+                    results: [{ label: "Reactions", value: 9 }, { label: "Comments", value: 25 }, { label: "Shares", value: 2 }, { label: "People reached", value: 1114 }, { label: "Post engagement", value: 36 }] },
+                  { name: "In-game screenshot activity", category: "Partner group", image: "pc_screenshot",
+                    description: "A partner-group post built on an in-game screenshot. The deck does not name the activity.",
+                    results: [{ label: "Reactions", value: 6 }, { label: "Comments", value: 11 }, { label: "Shares", value: 0 }, { label: "People reached", value: 201 }, { label: "Post engagement", value: 17 }] }
+                ] }
+            ] },
+            { type: "charts", title: "Activity comparison", items: [
+              { title: "Interactions by activity", type: "bar",
+                labels: ["Trivia Challenge", "Word Puzzle", "Heroes Day", "Guess the Location", "Screenshot activity"],
+                series: [{ name: "Reactions", values: [17, 9, 22, 9, 6] }, { name: "Comments", values: [35, 33, 9, 25, 11] }, { name: "Shares", values: [5, 1, 56, 2, 0] }],
+                note: "Official group: Trivia Challenge, Word Puzzle, National Heroes Day. Partner groups: Guess the Location, screenshot activity." },
+              { title: "Reach and post engagement by activity", type: "bar",
+                labels: ["Trivia Challenge", "Word Puzzle", "Heroes Day", "Guess the Location", "Screenshot activity"],
+                series: [{ name: "People reached", values: [2641, 794, 2112, 1114, 201] }, { name: "Post engagement", values: [57, 43, null, 36, 17] }],
+                note: "No post engagement figure is given for National Heroes Day." }
+            ] },
+            { type: "panel", title: "Community hot topics",
+              paragraphs: ["The deck carries one week of hot topics. The economy rate is stable, with no major changes in ALZ and FG rates for the whole month, and many resellers are posting in the group, either in-game currency or prizes from Path of Dusk."],
+              bullets: [
+                "Buying rate ALZ per M: $0.44–$0.48; selling rate ALZ per M: $0.46–$0.52",
+                "Buying rate FG per 10k: average $5.42–$5.46; selling rate FG per 10k: average $5.40–$5.58",
+                "Players are still looking for better activities, like ALZ and FG burning events",
+                "In the 2nd patch update, players are very happy because the events and activities are more F2P-centric, such as Dungeon Spotlight and the Mission War updates"
+              ],
+              note: "Players are not usually active in social media groups; they are more active in-game, which is why less information is gathered on what players talk about in the game." },
+            { type: "grid", title: "Moderators", cols: 2,
+              intro: "The approvals chart shows Chop with more posts approved and declined than Rygnus; it carries no value labels.",
+              items: [
+                { title: "Moderator Chop", paragraphs: ["Leads overall moderation activity and approvals. Also supports reporting player issues and concerns through the moderators' group chat (Moderator GC)."] },
+                { title: "Moderator Rygnus", paragraphs: ["Provides balanced moderation but always reports issues and concerns directly to the Moderator GC."] }
+              ] },
+            { type: "issues", title: "Issues and risks", items: [
+              { title: "Views and reactions down from July", impact: "Views fell 18.32% to 27,981 and reactions fell to 291 from 400; the deck suggests players are not enticed by the activities or the patch updates.", severity: "", status: "Open", owner: "", resolution: "Deck future plan: create more trivia, polls, screenshot challenges, memes, GM hunts and mini-games to keep players active." },
+              { title: "Limited visibility of player talk", impact: "Players are more active in-game than in the social media group, so less information is gathered on what they discuss.", severity: "", status: "Open", owner: "", resolution: "Deck future plans: moderators to regularly gather feedback and monitor game issues, scams, bots, top-up concerns and sentiment; scout additional partner leads to gather more data from the community." }
+            ] },
+            { type: "actions", title: "Future plans", items: [
+              { action: "Create more trivia, polls, screenshot challenges, memes, GM hunts and mini-games to keep players active", owner: "", due: "", status: "Planned" },
+              { action: "Instruct moderators to regularly gather feedback and monitor game issues, scams, bots, top-up concerns and player sentiment", owner: "Community moderators", due: "", status: "Planned" },
+              { action: "Scout additional partner leads to increase in-game influence and gather additional data from the community", owner: "", due: "", status: "Planned" },
+              { action: "Inform moderators to perform their duties and responsibilities actively, for clearer accountability and immediate reporting of issues and concerns", owner: "Community moderators", due: "", status: "Planned" }
+            ] }
+          ]
+        },
         {
           id: "vip", title: "Top Spender/VIP", status: "reported",
           short: "Top-up 44,302, +48.3%; 83 active VIP players",
@@ -597,7 +709,7 @@ const REPORT = {
   next: {
     kicker: "Outlook",
     title: "What's Next",
-    lede: "September has no major holiday to naturally boost group engagement, so the community team will run a more interactive activity; the Cabal Mobile Top Spender program's next Special Benefit E-Card is scheduled for 2–30 September; the Cabal Mobile Guild Leader team carries five recommendations out of the Guild Ranking Challenge; and the Cabal PC deck sets next steps around payment reliability, inactive guilds, Guild Leader incentives and tier promotions. Three program reports are still to come.",
+    lede: "September has no major holiday to naturally boost group engagement, so the Cabal Mobile community team will run a more interactive activity; the Cabal Mobile Top Spender program's next Special Benefit E-Card is scheduled for 2–30 September; the Cabal Mobile Guild Leader team carries five recommendations out of the Guild Ranking Challenge; the Cabal PC community team plans more engagement activities and closer moderator monitoring; and the Cabal PC TS & GL deck sets next steps around payment reliability, inactive guilds, Guild Leader incentives and tier promotions. Two program reports are still to come.",
     panels: [
       { title: "Cabal Mobile · Community", bullets: [
         "TikTok dance challenge featuring players' characters, with Force Gems as rewards",
@@ -615,6 +727,11 @@ const REPORT = {
         "Clarify and evaluate the permanent Transmuter / Battle Style proposal with the game team",
         "Repeat the before/during participation tracking for the next Guild Activity",
         "Follow up with the 8 non-participating Guild Leaders at an appropriate time" ] },
+      { title: "Cabal PC · Community", bullets: [
+        "More trivia, polls, screenshot challenges, memes, GM hunts and mini-games to keep players active",
+        "Moderators to regularly gather feedback and monitor game issues, scams, bots, top-up concerns and player sentiment",
+        "Scout additional partner leads for in-game influence and more community data",
+        "Clearer moderator responsibilities and accountability, with immediate reporting of issues and concerns" ] },
       { title: "Cabal PC · Top Spender/VIP", bullets: [
         "Monitor tier promotions to sustain VIP growth momentum",
         "Improve payment system reliability and expand top-up options" ] },
@@ -625,12 +742,13 @@ const REPORT = {
     ],
     notes: {
       lead: "Still to report for August.",
-      bullets: ["Cabal Mobile: Streamer", "Cabal PC: Community and Streamer"]
+      bullets: ["Cabal Mobile: Streamer", "Cabal PC: Streamer"]
     }
   },
 
   sources: [
     { title: "Community Report deck", desc: "[AUG 2026] Community Report, 15 pages", url: "https://www.canva.com/d/CAxmTnbo9G8-PHo" },
+    { title: "PC Community Report deck", desc: "[AUG 2026] PC Community Report, 13 pages", url: "https://www.canva.com/d/2xphjJGW8pIvlv3" },
     { title: "Top Spender report sheet", desc: "[TS] Monthly Report - August, Google Sheet, one tab", url: "https://docs.google.com/spreadsheets/d/1ReLzocI18oeQalLxrw9ObBk72Zma8KH7LBPaSgmnvj8/edit?gid=0#gid=0" },
     { title: "August E-Card activity tab", desc: "[SEA-TS] August E-Card (SPECIAL BENEFIT) tab in ITEM CODE (BD) 2025 - MSEA [UPDATED 2026]", url: "https://docs.google.com/spreadsheets/d/1bPrNx6K9UmOLQzGRS3FkVnbSjQ2jlbeo8rOrF6pbjJE/edit?gid=61151223#gid=61151223" },
     { title: "E-Card banner post", desc: "Banner posting link from the [TS] Monthly Report - August sheet (Facebook)", url: "https://www.facebook.com/photo/?fbid=122129178302936258&set=g.532583169239776" },
@@ -654,6 +772,10 @@ const REPORT = {
       "Cabal Mobile Guild Leader: the challenge counts 58 Guild Leaders; the program update counts 52 partnered. Both are shown as stated, and \"10% Guild Leaders\" is kept as labelled",
       "Cabal Mobile Guild Leader: 8 non-participants (6 work, 2 hospitalized) and 7 removals (5 work, 2 hospitalized) are separate facts from separate sources",
       "Cabal Mobile Guild Leader: the deck says Bracket 199 pre-event totals ranged from 100 to 113; its own chart puts 3 August at 119 and 5 August at 97",
+      "Cabal PC Community: the region pie puts 28.6% of members outside the Philippines, while the countries chart counts 8,847 of 9,911 members in the Philippines, and the seven shares read from the pie total 102%; all are shown as stated",
+      "Cabal PC Community: the age chart, the popular-days chart (the deck's text gives only Sunday 173 and Wednesday 169) and the moderator approvals chart carry no value labels, so they are described in words; region shares are read from the pie",
+      "Cabal PC Community: the deck's gender legend reads 'men (94%%)' and its growth page adds 'a 10% increase in members joined this August'; 94% and the +104 / 1.03% figures are used. 104 on the implied July base is about 1.06%, so 104 may be joins rather than net growth",
+      "Cabal PC Community: the deck calls 291 reactions 'almost half' of July's 400, which is a 27% decrease; the National Heroes Day card carries no post engagement figure; the second partner-group activity is not named; hot topics cover Week 1 only",
       "Cabal PC Top Spender: the summary states 15 new players onboarded; the onboarding list has 14 entries, one of them the account taken over in the month's single transfer",
       "Cabal PC Top Spender: top-up amounts are shown as in the sheet, which does not state a currency; player names and usernames in the sheet are not reproduced",
       "Cabal PC Guild Leader: the Maquinas Outpost Speed Run window is 21–26 August but its log holds submissions from 16 to 31 August; the Guild Battle Arena log runs 16–31 August inside its 15–31 August window",

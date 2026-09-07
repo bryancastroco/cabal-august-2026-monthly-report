@@ -129,8 +129,11 @@
       (wsrc ? '<div class="act-shot"><img src="' + wsrc + '" alt="' + esc(a.name || '') + '" data-cap="' + esc(a.name || '') + '"></div>' : '') +
       '<div class="act-head"><span class="nm">' + esc(a.name || 'Untitled activity') + '</span>' + (has(a.status) ? '<span class="badge ok">' + esc(a.status) + '</span>' : '') + (has(a.category) ? '<span class="badge dim">' + esc(a.category) + '</span>' : '') + (has(a.dates) ? '<span class="dt">' + esc(a.dates) + '</span>' : '') + '</div>' +
       (has(a.description) ? '<p class="act-desc">' + esc(a.description) + '</p>' : '') +
-      '<div class="g2"><div>' + (has(a.objective) ? '<h4>Objective</h4><p>' + esc(a.objective) + '</p>' : '') + (has(a.highlights) ? '<h4>Highlights</h4>' + bullets(a.highlights) : '') + '</div>' +
-      '<div>' + (res.length ? '<h4>Results</h4>' + kv(res) : '') + '</div></div>' +
+      (function () {
+        var left = (has(a.objective) ? '<h4>Objective</h4><p>' + esc(a.objective) + '</p>' : '') + (has(a.highlights) ? '<h4>Highlights</h4>' + bullets(a.highlights) : '');
+        var right = res.length ? '<h4>Results</h4>' + kv(res) : '';
+        return (left && right) ? '<div class="g2"><div>' + left + '</div><div>' + right + '</div></div>' : (left || right ? '<div>' + left + right + '</div>' : '');
+      })() +
       (has(a.photos) ? '<div class="g3" style="margin-top:14px">' + list(a.photos, function (ph) { var src = typeof ph === 'string' ? ph : ph.src, cap = typeof ph === 'string' ? '' : ph.caption; return '<img src="' + esc(src) + '" alt="' + esc(cap || a.name) + '" data-cap="' + esc(cap) + '" style="width:100%;border-radius:10px;border:1px solid var(--line);cursor:zoom-in">'; }) + '</div>' : '') +
       '</div>';
   }

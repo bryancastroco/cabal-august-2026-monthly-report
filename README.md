@@ -19,12 +19,12 @@ The UI follows the two existing report sites:
 | Cabal Mobile | Top Spender/VIP | Reported — roster by tier, July vs August, and the Special Benefit E-Card |
 | Cabal Mobile | Guild Leader | Reported — Guild Ranking Challenge + program update |
 | Cabal Mobile | Streamer | Pending — no report received |
-| Cabal PC | Community | Pending — no report received |
+| Cabal PC | Community | Reported — full data from the August PC deck |
 | Cabal PC | Top Spender/VIP | Reported — VIP top-up, tier breakdown, player movements from the August workbook |
 | Cabal PC | Guild Leader | Reported — two guild events, roster participation and the 10% bonus from the August workbook |
 | Cabal PC | Streamer | Pending — no report received |
 
-Report status is **Draft**. Three of eight programs are still to come.
+Report status is **Draft**. Two of eight programs are still to come.
 
 ## Run it
 
@@ -81,7 +81,7 @@ REPORT
 | type | renders |
 | --- | --- |
 | `notes` | amber-bar callout — `{ lead, bullets }` |
-| `panel` | one panel — `{ title, paragraphs, bullets }` |
+| `panel` | one panel — `{ title, paragraphs, bullets, note }` |
 | `grid` | panels in a 1/2/3-column grid; items take `paragraphs`, `bullets`, `stats`, `chart` |
 | `activities` | grouped activity cards; 3+ items in a group render as photo cards, fewer render wide (with `objective`, `highlights`, `results` and an optional `image` beside the text) |
 | `charts` | one or two chart panels |
@@ -111,8 +111,10 @@ renderers do not change.
 3. Reference it by key: `banner: "event_foo"` on a program, `image: "event_foo"` on an
    activity item.
 
-The Cabal Mobile images were cropped out of the Canva slide exports at 1280×720 and the
-two Cabal PC banners from the TS & GL Slides.pptx artwork; all are re-encoded as WebP (~300px wide for event creatives, 760px for banners). Every image opens in a
+The Cabal Mobile images were cropped out of the Canva slide exports at 1280×720, the Cabal PC
+Community banner and event creatives out of that deck's exports at 1920×1080, and the Cabal PC
+Top Spender/VIP and Guild Leader banners from the TS & GL Slides.pptx artwork; all are
+re-encoded as WebP (~300px wide for event creatives, 760px for banners). Every image opens in a
 lightbox on click.
 
 ## Features
@@ -157,10 +159,18 @@ under Data notes:
   non-roster guild logged 214 s against the fastest registered 315 s.
 - Cabal PC Guild Leader: the highlight mentions a Guild Mission Festival that is not
   described anywhere else in the workbook or deck.
+- Cabal PC Community: the region pie says 28.6% outside the Philippines; the countries chart
+  counts 8,847 of 9,911 in the Philippines. Both shown as stated.
+- Cabal PC Community: the age, popular-days and moderator approvals charts have no value
+  labels (only Sunday 173 and Wednesday 169 are stated), so they are described in words; the
+  Philippine region shares are read off the pie image and total 102% as read.
+- Cabal PC Community: gender legend reads "men (94%%)"; the growth page also says members
+  joined rose 10%. National Heroes Day has no post engagement figure; the second partner-group
+  activity is unnamed; hot topics cover Week 1 only.
 
 **Content to add**
 
-- Three pending program reports
+- Two pending program reports
 - Top Posts and Community Talks currently have no images — the source screenshots are
   Facebook posts that turn illegible at card width
 - Community's `sourceLine` carries no preparer credit; Guild Leader's credits AE PH: Ian and
@@ -170,6 +180,7 @@ under Data notes:
 ## Sources
 
 - `[AUG 2026] Community Report` — Canva, 15 pages
+- `[AUG 2026] PC Community Report` — Canva, 13 pages
 - `Guild Ranking Challenge: August 2026 Insights` — Canva, 6 pages, prepared by AE PH: Ian
 - Guild Program update (partnered count, 10% Guild Leaders, removals) — shared as text
 - `[TS] Monthly Report - August` — Google Sheet, one tab: July/August roster by tier and
@@ -181,4 +192,4 @@ under Data notes:
 - `Montly Report - Guild Leader AUGUST.xlsx` — KPI Summary, Guild Roster & Bonus, Guild Battle
   Arena and Maquinas Speed Run submission logs
 - `TS & GL Slides.pptx` — 6 slides, August 2026 VIP Performance & Philippines Guild Events KPI
-  Summary; the two Cabal PC banners are cropped from its artwork
+  Summary; the Cabal PC Top Spender/VIP and Guild Leader banners are cropped from its artwork
