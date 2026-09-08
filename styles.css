@@ -161,6 +161,10 @@ ul.clean li::before{content:""; position:absolute; left:0; top:.6em; width:6px; 
 .notes ul.clean:last-child{margin-bottom:0}
 .notes ul.clean li{font-size:.83rem; color:var(--muted); margin-bottom:5px; padding-left:15px}
 .notes ul.clean li::before{top:.52em; width:5px; height:5px; background:var(--amber); opacity:.75}
+/* Key points, hoisted above the KPI cards: slightly larger and brighter than a trailing note */
+.notes-lead{margin:0 0 26px; border-left-width:4px}
+.notes-lead p strong{font-size:.95rem}
+.notes-lead ul.clean li{font-size:.9rem; color:var(--text); margin-bottom:7px}
 
 .srcs{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
 .src{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--panel); text-decoration:none; display:block; transition:.2s; color:inherit}

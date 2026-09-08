@@ -25,7 +25,7 @@
     var t = String(s).toLowerCase(), k = /(done|complete|closed|resolved|achieved|delivered|live)/.test(t) ? 'ok' : /(blocked|overdue|off track|critical|cancel)/.test(t) ? 'info' : /(recommend|planned|monitor|open|ongoing|pending)/.test(t) ? 'amber' : 'dim';
     return '<span class="badge ' + k + '">' + esc(s) + '</span>';
   }
-  function notes(n) { if (!n || (!has(n.lead) && !has(n.bullets))) return ''; return '<div class="notes rise">' + (has(n.lead) ? '<p><strong>' + esc(n.lead) + '</strong></p>' : '') + bullets(n.bullets) + '</div>'; }
+  function notes(n, cls) { if (!n || (!has(n.lead) && !has(n.bullets))) return ''; return '<div class="notes' + (cls ? ' ' + cls : '') + ' rise">' + (has(n.lead) ? '<p><strong>' + esc(n.lead) + '</strong></p>' : '') + bullets(n.bullets) + '</div>'; }
   function kv(stats) {
     var s = (stats || []).filter(function (x) { return has(x.label); });
     return s.length ? '<div class="kv">' + list(s, function (x) { return '<div><span>' + esc(x.label) + '</span><b>' + (has(x.value) ? show(x.value, x.unit) : '—') + '</b></div>'; }) + '</div>' : '';
@@ -182,14 +182,20 @@
         '</div></section>';
     }
     var ctx = { palette: prod.palette, color: prod.color };
+    /* A leading "notes" block is the program's key points: show it above the KPI
+       cards so each program opens with its takeaways rather than a wall of numbers. */
+    var blocks = prog.blocks || [];
+    var keyPoints = (blocks[0] && blocks[0].type === 'notes') ? blocks[0] : null;
+    var rest = keyPoints ? blocks.slice(1) : blocks;
     return '<section class="prog slide" id="' + esc(id) + '"><div class="wrap">' +
       '<span class="kicker rise">' + esc(kicker) + '</span><h2 class="h2 rise">' + esc(prog.title) + '</h2>' +
       (has(prog.lede) ? '<p class="lede rise">' + esc(prog.lede) + '</p>' : '') +
       (has(prog.badges) ? '<div class="badgerow rise">' + list(prog.badges, badge) + '</div>' : '') +
       (has(prog.sourceLine) ? '<p class="srcline rise">' + esc(prog.sourceLine) + '</p>' : '') +
       (imgSrc(prog.banner) ? '<figure class="prog-banner rise"><img src="' + imgSrc(prog.banner) + '" alt="' + esc(prog.title) + '" data-cap="' + esc(prog.bannerCaption || prog.title) + '">' + (has(prog.bannerCaption) ? '<figcaption>' + esc(prog.bannerCaption) + '</figcaption>' : '') + '</figure>' : '') +
+      (keyPoints ? notes(keyPoints, 'notes-lead') : '') +
       statsGrid(prog.stats) +
-      list(prog.blocks, function (b) { return renderBlock(b, ctx); }) +
+      list(rest, function (b) { return renderBlock(b, ctx); }) +
       '</div></section>';
   }
   function productBlock(prod) {

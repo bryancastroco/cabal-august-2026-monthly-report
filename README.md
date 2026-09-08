@@ -80,7 +80,7 @@ REPORT
 
 | type | renders |
 | --- | --- |
-| `notes` | amber-bar callout — `{ lead, bullets }` |
+| `notes` | amber-bar callout — `{ lead, bullets }`. Placed **first** in `blocks`, it becomes the program key points and renders above the KPI cards |
 | `panel` | one panel — `{ title, paragraphs, bullets, note }` |
 | `grid` | panels in a 1/2/3-column grid; items take `paragraphs`, `bullets`, `stats`, `chart` |
 | `activities` | grouped activity cards; 3+ items in a group render as photo cards, fewer render wide (with `objective`, `highlights`, `results` and an optional `image` beside the text) |
