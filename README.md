@@ -111,10 +111,9 @@ renderers do not change.
 3. Reference it by key: `banner: "event_foo"` on a program, `image: "event_foo"` on an
    activity item.
 
-The Cabal Mobile images were cropped out of the Canva slide exports at 1280×720, the Cabal PC
-Community banner and event creatives out of that deck's exports at 1920×1080, and the Cabal PC
-Top Spender/VIP and Guild Leader banners from the TS & GL Slides.pptx artwork; all are
-re-encoded as WebP (~300px wide for event creatives, 760px for banners). Every image opens in a
+The Cabal Mobile images were cropped out of the Canva slide exports at 1280×720 and the
+Cabal PC Community banner and event creatives out of that deck's exports at 1920×1080; all
+are re-encoded as WebP (~300px wide for event creatives, 760px for banners). Every image opens in a
 lightbox on click.
 
 ## Features
@@ -192,4 +191,4 @@ under Data notes:
 - `Montly Report - Guild Leader AUGUST.xlsx` — KPI Summary, Guild Roster & Bonus, Guild Battle
   Arena and Maquinas Speed Run submission logs
 - `TS & GL Slides.pptx` — 6 slides, August 2026 VIP Performance & Philippines Guild Events KPI
-  Summary; the Cabal PC Top Spender/VIP and Guild Leader banners are cropped from its artwork
+  Summary

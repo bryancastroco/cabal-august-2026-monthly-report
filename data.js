@@ -16,8 +16,6 @@ const ASSETS = {
   tot: "assets/event-this-or-that.webp",
   spot: "assets/event-spot-the-difference.webp",
   match: "assets/event-match-it.webp",
-  banner_vip_pc: "assets/banner-vip-pc.webp",
-  banner_guild_pc: "assets/banner-guild-pc.webp",
   banner_community_pc: "assets/banner-community-pc.webp",
   pc_trivia: "assets/event-pc-trivia-challenge.webp",
   pc_puzzle: "assets/event-pc-word-puzzle.webp",
@@ -70,8 +68,7 @@ const ASSETS = {
      "VIP Report Aug '26" (Staz VIP Report — August 2026), and the "TS & GL Slides" deck.
    - Cabal PC Guild Leader: "Montly Report - Guild Leader AUGUST.xlsx" (KPI Summary,
      Guild Roster & Bonus, Guild Battle Arena and Maquinas Speed Run logs) and the
-     "TS & GL Slides" deck. The Top Spender/VIP and Guild Leader banners are cropped from
-     that deck's artwork.
+     "TS & GL Slides" deck.
    Figures are taken as they appear in those sources; nothing has been
    added or estimated. Anything unclear is listed under Data notes.
    ===================================================================== */
@@ -525,7 +522,6 @@ const REPORT = {
         {
           id: "vip", title: "Top Spender/VIP", status: "reported",
           short: "Top-up 44,302, +48.3%; 83 active VIP players",
-          banner: "banner_vip_pc", bannerCaption: "TS & GL Slides · August 2026 VIP Performance & Philippines Guild Events KPI Summary",
           lede: "Top-up +48.3% to 44,302 across 83 active players, with Prestige and Topspender driving 81.3%. 15 onboarded, 6 promoted.",
           badges: [
             { text: "Reported", kind: "ok" }, { text: "44,302 top-up", kind: "info" }, { text: "+48.3% vs July", kind: "info" },
@@ -604,7 +600,6 @@ const REPORT = {
         {
           id: "guild", title: "Guild Leader", status: "reported",
           short: "13 of 14 guilds active (92.9%); 10% bonus to all 14 Guild Leaders",
-          banner: "banner_guild_pc", bannerCaption: "TS & GL Slides · August 2026 VIP Performance & Philippines Guild Events KPI Summary",
           lede: "13 of 14 registered guilds joined at least one of August's two events: 9 the Guild Battle Arena, 13 the Speed Run. All 14 Guild Leaders got the 10% bonus.",
           badges: [
             { text: "Reported", kind: "ok" }, { text: "14 registered guilds", kind: "info" }, { text: "92.9% active in at least one event", kind: "info" },
