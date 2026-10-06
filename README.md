@@ -43,6 +43,46 @@ python3 build.py                # -> dist/august-2026-monthly-report.html
 `build.py` inlines the CSS, the JS and every image as a data URI. Re-run it after
 any data change. `dist/` is disposable output.
 
+## Deploying
+
+Live: **https://cabal-august-2026-monthly-report.vercel.app**
+
+- Repo: `bryancastroco/cabal-august-2026-monthly-report` (public)
+- Vercel project `cabal-august-2026-monthly-report`, team CBSoft Company Limited
+  (slug `combo-inter-active`), connected to this repo's `main` branch
+
+The site is static, so there is no build on Vercel. **Any push to `main` redeploys**,
+live in about 20 seconds:
+
+```bash
+git add -A && git commit -m "..." && git push origin main
+```
+
+Nothing in that path depends on a particular editor, assistant or connector — only on
+push access to the repo. To confirm a deploy actually landed, compare a file against
+the live copy rather than trusting the dashboard:
+
+```bash
+curl -s https://cabal-august-2026-monthly-report.vercel.app/data.js | sha256sum; sha256sum data.js
+```
+
+`.vercelignore` keeps `README.md`, `build.py`, `dist/` and the stray root HTML export
+out of what gets served.
+
+### Two things that will waste your time
+
+1. **Git identity.** There is no global one on the authoring machine; this clone has a
+   repo-local one set. A fresh clone must set its own before the first commit:
+   ```bash
+   git config user.name "your-name" && git config user.email "you@example.com"
+   ```
+2. **Local preview caches hard.** Browsers hold on to `app.js` and `data.js` across
+   reloads, and a `?v=2` on the page URL does *not* bust them. After editing either file,
+   serve on a **new port** instead of reloading:
+   ```bash
+   python3 -m http.server 8801    # then 8802, 8803... as you iterate
+   ```
+
 ## Files
 
 ```
