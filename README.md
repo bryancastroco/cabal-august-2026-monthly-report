@@ -60,10 +60,13 @@ git add -A && git commit -m "..." && git push origin main
 
 Nothing in that path depends on a particular editor, assistant or connector — only on
 push access to the repo. To confirm a deploy actually landed, compare a file against
-the live copy rather than trusting the dashboard:
+the live copy rather than trusting the dashboard. Strip carriage returns on both sides:
+Git checks out CRLF on Windows (`core.autocrlf=true`) while the repo and the live site
+are LF, so a raw byte comparison always looks different even when nothing is wrong.
 
 ```bash
-curl -s https://cabal-august-2026-monthly-report.vercel.app/data.js | sha256sum; sha256sum data.js
+curl -s https://cabal-august-2026-monthly-report.vercel.app/data.js | tr -d '\r' | sha256sum
+tr -d '\r' < data.js | sha256sum
 ```
 
 `.vercelignore` keeps `README.md`, `build.py`, `dist/` and the stray root HTML export
